@@ -43,7 +43,7 @@ mainCyclist.addAnimation("SahilRunning",mainRacerImg1);
 mainCyclist.scale=0.07;
   
 //set collider for mainCyclist
-mainCyclist.setCollider("rectangle",0,0,mainCyclist.width,mainCyclist.height);
+mainCyclist.setCollider("rectangle",0,0,40,40);;
 mainCyclist.debug = true;
   
 gameOver = createSprite(650,150);
@@ -79,8 +79,8 @@ function draw() {
   if(path.x < 0 ){
     path.x = width/2;
   }
+  //code to play cycle bell sound
   
-    //code to play cycle bell sound
   if(keyDown("space")) {
     cycleBell.play();
   }
@@ -119,11 +119,9 @@ function draw() {
 }else if (gameState === END) {
     gameOver.visible = true;
     //Add code to show restart game instrution in text here
-    if (keyDown("UP_ARROW")){
-
-      reset(); 
-
-    }
+    textSize(20);
+    fill(255);
+    text("Press Up Arrow to Restart the game!", 500,200);
   
     path.velocityX = 0;
     mainCyclist.velocityY = 0;
@@ -139,6 +137,9 @@ function draw() {
     redCG.setLifetimeEach(-1);
 
     //write condition for calling reset( )
+    if (keyDown("UP_ARROW")){
+      reset(); 
+    }
 }
 }
 
@@ -177,6 +178,8 @@ function reset(){
   gameOver.visible = false;
   mainCyclist.addAnimation("SahilRunning",mainRacerImg1);
   pinkCG.destroyEach();
+  yellowCG.destroyEach();
+  redCG.destroyEach();
   distance = 0;
 }
 
